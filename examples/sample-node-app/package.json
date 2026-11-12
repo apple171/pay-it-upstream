@@ -1,0 +1,31 @@
+{
+  "name": "sample-node-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small link-shortener API with a CLI for admin tasks.",
+  "type": "module",
+  "main": "src/server.js",
+  "bin": {
+    "shorty": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "pino": "^9.6.0",
+    "commander": "^12.1.0",
+    "dayjs": "^1.11.13",
+    "chalk": "^5.4.1",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.1",
+    "nanoid": "^5.0.9",
+    "lodash": "^4.17.21",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
+}

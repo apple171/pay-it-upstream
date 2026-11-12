@@ -1,0 +1,77 @@
+/* Dashboard shell and custom widgets. Colours come from the tokens in app/globals.css. */
+main.piu-main { max-width: none; padding: 0; }
+.piu-note { padding: 48px 24px; color: var(--muted); text-align: center; }
+/* Fills the window under the nav; only the Studio canvas scrolls. */
+.piu-dash { display: flex; flex-direction: column; height: calc(100dvh - var(--nav-h)); min-height: 560px; }
+.piu-bar-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 24px 10px; border-bottom: 1px solid var(--line); background: var(--bg); }
+.piu-title { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.piu-title h1 { font-size: 16px; font-weight: 620; margin: 0; letter-spacing: -0.01em; white-space: nowrap; }
+.piu-tabs { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); overflow-x: auto; }
+.piu-tabs button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--muted); border-radius: 7px; padding: 5px 12px; cursor: pointer; white-space: nowrap; }
+.piu-tabs button:hover { color: var(--text); }
+.piu-tabs button[aria-selected="true"] { color: var(--text); background: var(--card-2); box-shadow: 0 0 0 1px var(--line-2) inset; font-weight: 560; }
+.piu-actions { display: flex; gap: 8px; align-items: center; }
+.piu-actions button { font: inherit; font-size: 13px; height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--card); color: var(--text); cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.piu-actions button:hover { background: var(--card-2); }
+.piu-actions .primary { background: var(--text); border-color: var(--text); color: var(--bg); font-weight: 560; }
+.piu-actions .primary:hover { background: var(--text); opacity: .9; }
+.piu-studio { flex: 1; min-height: 0; min-width: 0; width: 100%; overflow: hidden; }
+.piu-foot { margin: 0; padding: 8px 24px 10px; font-size: 12px; color: var(--faint); border-top: 1px solid var(--line); display: flex; gap: 8px 16px; flex-wrap: wrap; align-items: center; }
+@media (max-width: 720px) {
+  .piu-dash { height: auto; } .piu-studio { height: 1400px; flex: none; }
+  .piu-bar-top { padding: 10px 16px; } .piu-title h1 { display: none; } .piu-foot { padding: 8px 16px; }
+}
+
+/* Payout timeline */
+.piu-timeline { height: 100%; overflow: hidden; display: flex; flex-direction: column; gap: 2px; }
+.piu-more { margin-top: auto; padding: 6px 8px 0; font-size: 12px; color: var(--faint); }
+.piu-trow {
+  all: unset; box-sizing: border-box; display: grid; grid-template-columns: minmax(90px, 1fr) minmax(200px, 2.4fr) auto;
+  align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; cursor: pointer; font-size: 13px;
+}
+.piu-trow:hover, .piu-trow:focus-visible { background: var(--hover); }
+.piu-trow.dim { opacity: .4; }
+.piu-tname { display: flex; flex-direction: column; font-family: var(--mono); font-weight: 550; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.piu-tname b { font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.piu-track { display: flex; align-items: center; min-width: 0; }
+.piu-step { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--muted); white-space: nowrap; }
+.piu-step i { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); }
+.piu-step.done i { border-color: var(--accent); background: var(--accent); }
+.piu-step.ok i { border-color: var(--ok); background: var(--ok); } .piu-step.ok { color: var(--ok); font-weight: 600; }
+.piu-step.wait i { border-color: var(--wait); background: var(--wait); } .piu-step.wait { color: var(--wait); font-weight: 600; }
+.piu-step.bad i { border-color: var(--bad); background: var(--bad); } .piu-step.bad { color: var(--bad); font-weight: 600; }
+.piu-line { flex: 1; min-width: 16px; height: 2px; background: var(--line); margin: 0 4px 14px; }
+.piu-line.done { background: var(--accent); } .piu-line.ok { background: var(--ok); } .piu-line.wait { background: var(--wait); } .piu-line.bad { background: var(--bad); }
+.piu-badge { font-size: 11px; font-weight: 600; white-space: nowrap; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; }
+.piu-badge.ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); background: var(--ok-soft); }
+@media (max-width: 520px) { .piu-trow { grid-template-columns: 1fr auto; } .piu-track { grid-column: 1 / -1; grid-row: 2; } }
+
+/* Risk quadrant */
+.piu-quadrant { width: 100%; height: 100%; display: block; font: 11px var(--mono); }
+.piu-quadrant .frame { fill: none; stroke: var(--line); }
+.piu-quadrant .hot { fill: var(--bad); opacity: .08; }
+.piu-quadrant line { stroke: var(--line); stroke-dasharray: 3 3; }
+.piu-quadrant .corner { fill: var(--bad); font-weight: 600; }
+.piu-quadrant .axis { fill: var(--muted); }
+.piu-quadrant .bubble { cursor: pointer; }
+.piu-quadrant .bubble circle { fill: var(--accent); fill-opacity: .35; stroke: var(--accent); stroke-width: 1.2; }
+.piu-quadrant .bubble:hover circle { fill-opacity: .85; }
+.piu-quadrant .bubble text { fill: var(--text); }
+.piu-quadrant .bubble.dim { opacity: .25; }
+
+/* Critical packages meter */
+.piu-meter { height: 100%; display: flex; flex-direction: column; gap: 4px; overflow: hidden; padding: 8px 9px 0; }
+.piu-meter-t { font-size: 13px; font-weight: 700; color: var(--brand); }
+.piu-meter-n { font-family: var(--mono); font-size: 26px; font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin-top: 2px; }
+.piu-meter-n span { color: var(--muted); font-weight: 500; }
+.piu-meter-l { font-size: 13px; color: var(--muted); }
+.piu-bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; flex: none; }
+.piu-bar > div { height: 100%; background: var(--ok); }
+.piu-chips { display: flex; flex-wrap: wrap; gap: 4px; overflow: hidden; min-height: 0; margin-top: 2px; }
+.piu-chips span { font-family: var(--mono); font-size: 11px; border: 1px solid var(--line); color: var(--muted); border-radius: 5px; padding: 0 5px; background: var(--card-2); }
+.piu-chips span.ok { color: var(--ok); border-color: var(--ok); }
+
+/* Payout card in the AI chat */
+.piu-card { display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+.piu-card p { margin: 4px 0; }
+.piu-card-head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }

@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pay-it-upstream",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-15",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "routes": [{ "pattern": "pay-it-upstream.ienv.site", "custom_domain": true }],
+  "workers_dev": true,
+  "preview_urls": false,
+  "d1_databases": [
+    // Create with: npx wrangler d1 create pay-it-upstream, then paste its database_id here.
+    { "binding": "DB", "database_name": "pay-it-upstream", "database_id": "<your-d1-database-id>" }
+  ],
+  "vars": { "CLAUDE_MODEL": "claude-opus-5-5" }
+  // Secrets (npx wrangler secret put NAME): PAYPAL_WEBHOOK_ID, LEDGER_PUBLISH_TOKEN, ANTHROPIC_API_KEY
+}

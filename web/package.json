@@ -1,0 +1,30 @@
+{
+  "name": "pay-it-upstream-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public ledger for Pay It Upstream: PayPal-verified payouts to open-source maintainers.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p ${PORT:-3000}",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.8.0",
+    "ag-studio": "3.0.0",
+    "ag-studio-react": "3.0.0",
+    "next": "^16.4.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.16",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5",
+    "wrangler": "^4.160.0"
+  }
+}

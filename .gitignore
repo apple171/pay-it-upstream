@@ -1,0 +1,14 @@
+# Secrets (never committed)
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output
+node_modules/
+# dist/ is committed: installs from GitHub run it directly, with no build step.
+coverage/
+*.log
+.DS_Store
+
+# Local run records and caches (contain maintainer contact data)
+.pay-it-upstream/

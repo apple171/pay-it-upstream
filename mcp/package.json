@@ -1,0 +1,20 @@
+{
+  "name": "pay-it-upstream-mcp",
+  "version": "0.1.0",
+  "description": "MCP server: lets a coding agent fund the open-source packages a project depends on, with PayPal and human approval.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "pay-it-upstream-mcp": "server.ts"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node server.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  }
+}

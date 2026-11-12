@@ -1,0 +1,10 @@
+.next/
+node_modules/
+next-env.d.ts
+data/
+.env*
+!.env.example
+tsconfig.tsbuildinfo
+.open-next/
+.wrangler/
+.dev.vars
